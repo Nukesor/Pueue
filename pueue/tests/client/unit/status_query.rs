@@ -1,6 +1,7 @@
+use crate::prelude::*;
+
 use std::{collections::HashMap, path::PathBuf};
 
-use anyhow::Result;
 use assert_matches::assert_matches;
 use chrono::{Local, TimeZone};
 use pretty_assertions::assert_eq;
@@ -232,7 +233,7 @@ async fn filter_status(#[case] status_filter: &str, #[case] match_count: usize) 
                 },
                 "Only Failed tasks are allowed"
             ),
-            _ => anyhow::bail!("Got unexpected TaskStatus in filter_status"),
+            _ => bail!("Got unexpected TaskStatus in filter_status"),
         };
     }
 

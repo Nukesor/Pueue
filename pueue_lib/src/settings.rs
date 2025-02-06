@@ -1,9 +1,10 @@
+use crate::prelude::*;
+
 use std::collections::HashMap;
 use std::fs::{create_dir_all, File};
 use std::io::{prelude::*, BufReader};
 use std::path::{Path, PathBuf};
 
-use log::info;
 use serde::{Deserialize, Serialize};
 use shellexpand::tilde;
 

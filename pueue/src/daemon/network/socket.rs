@@ -1,8 +1,8 @@
+use crate::prelude::*;
+
 use std::time::{Duration, SystemTime};
 
-use anyhow::{bail, Context, Result};
 use clap::crate_version;
-use log::{debug, info, warn};
 use tokio::time::sleep;
 
 use pueue_lib::error::Error;

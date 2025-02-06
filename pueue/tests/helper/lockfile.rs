@@ -1,9 +1,9 @@
+use crate::prelude::*;
+
 use std::{
     fs::{remove_file, File},
     path::{Path, PathBuf},
 };
-
-use anyhow::{Context, Result};
 
 use super::{daemon_base_setup, daemon_with_settings, PueueDaemon};
 

@@ -1,9 +1,10 @@
+use crate::prelude::*;
+
 // We allow anyhow in here, as this is a module that'll be strictly used internally.
 // As soon as it's obvious that this is code is intended to be exposed to library users, we have to
 // go ahead and replace any `anyhow` usage by proper error handling via our own Error type.
-use anyhow::Result;
+use color_eyre::Result;
 use command_group::{GroupChild, Signal, UnixChildExt};
-use log::info;
 
 use crate::settings::Settings;
 
@@ -44,14 +45,15 @@ pub fn kill_child(task_id: usize, child: &mut GroupChild) -> std::io::Result<()>
 
 #[cfg(test)]
 mod tests {
+    use crate::prelude::*;
+
     use std::process::Command;
     use std::thread::sleep;
     use std::time::Duration;
 
-    use anyhow::Result;
+    use color_eyre::Result;
     use command_group::CommandGroup;
     use libproc::processes::{pids_by_type, ProcFilter};
-    use log::warn;
     use pretty_assertions::assert_eq;
 
     use super::*;

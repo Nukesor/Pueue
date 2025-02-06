@@ -1,14 +1,14 @@
 use std::process::Command;
 
-use anyhow::Result;
 use clap::Parser;
-use log::warn;
-use simplelog::{Config, ConfigBuilder, LevelFilter, SimpleLogger, TermLogger, TerminalMode};
+use color_eyre::Result;
 
 use pueue::daemon::{cli::CliArguments, run};
 
 #[tokio::main(flavor = "multi_thread", worker_threads = 4)]
 async fn main() -> Result<()> {
+    color_eyre::install()?;
+
     // Parse commandline options.
     let opt = CliArguments::parse();
 
@@ -26,34 +26,7 @@ async fn main() -> Result<()> {
     }
 
     // Set the verbosity level of the logger.
-    let level = match opt.verbose {
-        0 => LevelFilter::Warn,
-        1 => LevelFilter::Info,
-        2 => LevelFilter::Debug,
-        _ => LevelFilter::Trace,
-    };
-
-    // Try to initialize the logger with the timezone set to the Local time of the machine.
-    let mut builder = ConfigBuilder::new();
-    let logger_config = match builder.set_time_offset_to_local() {
-        Err(_) => {
-            warn!("Failed to determine the local time of this machine. Fallback to UTC.");
-            Config::default()
-        }
-        Ok(builder) => builder.build(),
-    };
-
-    // Init a terminal logger. If this fails for some reason, try fallback to a SimpleLogger
-    if TermLogger::init(
-        level,
-        logger_config.clone(),
-        TerminalMode::Stderr,
-        simplelog::ColorChoice::Auto,
-    )
-    .is_err()
-    {
-        SimpleLogger::init(level, logger_config).unwrap();
-    }
+    pueue::tracing::install_tracing(opt.verbose)?;
 
     #[cfg(target_os = "windows")]
     {

@@ -1,8 +1,9 @@
+use crate::prelude::*;
+
 use std::fs::read_to_string;
 use std::fs::File;
 use std::path::Path;
 
-use anyhow::{bail, Context, Result};
 use tempfile::TempDir;
 
 use pueue_lib::{network::message::*, task::Task};
@@ -111,7 +112,7 @@ async fn test_partial_log() -> Result<()> {
     let output = logs
         .output
         .clone()
-        .context("Didn't find output on TaskLogMessage")?;
+        .ok_or(eyre!("Didn't find output on TaskLogMessage"))?;
     let output = decompress_log(output)?;
 
     // Make sure it's the same
@@ -148,7 +149,7 @@ async fn test_correct_log_order() -> Result<()> {
     let output = logs
         .output
         .clone()
-        .context("Didn't find output on TaskLogMessage")?;
+        .ok_or(eyre!("Didn't find output on TaskLogMessage"))?;
     let output = decompress_log(output)?;
 
     // Make sure it's the same

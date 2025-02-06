@@ -1,9 +1,8 @@
+use crate::prelude::*;
+
 use std::path::Path;
 use std::sync::{Arc, Mutex};
 use std::{fs::create_dir_all, path::PathBuf};
-
-use anyhow::{bail, Context, Result};
-use log::warn;
 
 use process_handler::initiate_shutdown;
 use pueue_lib::error::Error;

@@ -15,14 +15,13 @@ rust-version.workspace = true
 maintenance = { status = "actively-developed" }
 
 [dependencies]
-anyhow = "1.0"
 async-trait = "0.1"
 byteorder = "1.5"
 chrono.workspace = true
+color-eyre.workspace = true
 command-group.workspace = true
 dirs = "6.0"
 handlebars.workspace = true
-log.workspace = true
 rand = "0.8"
 rcgen = "0.13"
 rev_buf_reader = "0.3"
@@ -43,9 +42,9 @@ strum.workspace = true
 thiserror = "2"
 tokio = { workspace = true, features = ["io-util", "macros", "net"] }
 tokio-rustls = { version = "0.26", default-features = false }
+tracing.workspace = true
 
 [dev-dependencies]
-anyhow.workspace = true
 better-panic.workspace = true
 portpicker = "0.1"
 pretty_assertions.workspace = true

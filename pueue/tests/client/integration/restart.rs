@@ -1,6 +1,7 @@
+use crate::prelude::*;
+
 use std::collections::HashMap;
 
-use anyhow::Result;
 use assert_matches::assert_matches;
 
 use pueue_lib::task::{Task, TaskResult, TaskStatus};

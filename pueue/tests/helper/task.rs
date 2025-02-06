@@ -1,7 +1,7 @@
+use crate::prelude::*;
+
 use std::collections::HashMap;
 use std::env::vars;
-
-use anyhow::{anyhow, Context, Result};
 
 use chrono::{DateTime, Local};
 use pueue_lib::network::message::*;
@@ -66,7 +66,7 @@ pub async fn get_task(shared: &Shared, task_id: usize) -> Result<Task> {
     let task = state
         .tasks
         .get(&0)
-        .ok_or_else(|| anyhow!("Couldn't find task {task_id}"))?;
+        .ok_or_else(|| eyre!("Couldn't find task {task_id}"))?;
 
     Ok(task.clone())
 }

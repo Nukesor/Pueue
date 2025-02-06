@@ -1,6 +1,7 @@
+use crate::prelude::*;
+
 use std::io;
 
-use anyhow::Result;
 use crossterm::style::{Attribute, Color};
 use snap::read::FrameDecoder;
 

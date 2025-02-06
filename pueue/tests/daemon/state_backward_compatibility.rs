@@ -1,7 +1,8 @@
+use crate::prelude::*;
+
 use std::fs::File;
 use std::io::prelude::*;
 
-use anyhow::{Context, Result};
 use pueue::daemon::state_helper::restore_state;
 use tempfile::TempDir;
 

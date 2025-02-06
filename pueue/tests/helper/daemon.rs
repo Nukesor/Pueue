@@ -1,9 +1,10 @@
+use crate::prelude::*;
+
 use std::fs::File;
 use std::io::Read;
 use std::path::Path;
 use std::process::Child;
 
-use anyhow::{anyhow, bail, Context, Result};
 use pueue_lib::network::message::*;
 use pueue_lib::settings::*;
 
@@ -49,7 +50,7 @@ pub async fn get_pid(pid_path: &Path) -> Result<i32> {
 
         let pid = content
             .parse::<i32>()
-            .map_err(|_| anyhow!("Couldn't parse value: {content}"))?;
+            .map_err(|_| eyre!("Couldn't parse value: {content}"))?;
         return Ok(pid);
     }
 

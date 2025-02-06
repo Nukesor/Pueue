@@ -632,7 +632,7 @@ fn parse_delay_until(src: &str) -> Result<DateTime<Local>, String> {
     if let Ok(seconds) = src.parse::<i64>() {
         let delay_until = Local::now()
             + TimeDelta::try_seconds(seconds)
-                .ok_or("Failed to get timedelta from {seconds} seconds")?;
+                .ok_or(format!("Failed to get timedelta from {seconds} seconds"))?;
         return Ok(delay_until);
     }
 

@@ -4,7 +4,8 @@
 //! "non-trivial" vaguely means that we, for instance, have to do additional requests to the
 //! daemon, open some files on the filesystem, edit files and so on.
 //! All commands that cannot be simply handled by handling requests or using `pueue_lib`.
-use anyhow::Result;
+
+use crate::prelude::*;
 
 use pueue_lib::network::protocol::*;
 use pueue_lib::state::State;

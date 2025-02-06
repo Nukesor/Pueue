@@ -1,5 +1,10 @@
 #![doc = include_str!("../README.md")]
 
+pub(crate) mod prelude {
+    #[allow(unused_imports)]
+    pub use tracing::{debug, error, info, trace, warn};
+}
+
 /// Shared module for internal logic!
 /// Contains helper for command aliasing.
 pub mod aliasing;

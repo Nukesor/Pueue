@@ -1,6 +1,7 @@
+use crate::prelude::*;
+
 use std::io::Read;
 
-use anyhow::{bail, Context, Result};
 use pueue_lib::network::message::*;
 use pueue_lib::settings::*;
 use snap::read::FrameDecoder;
@@ -36,10 +37,10 @@ pub async fn get_task_log(shared: &Shared, task_id: usize, lines: Option<usize>)
 
     let log = logs
         .remove(&task_id)
-        .context("Didn't find log of requested task")?;
+        .ok_or(eyre!("Didn't find log of requested task"))?;
     let bytes = log
         .output
-        .context("Didn't get log output even though requested.")?;
+        .ok_or(eyre!("Didn't get log output even though requested."))?;
 
     decompress_log(bytes)
 }

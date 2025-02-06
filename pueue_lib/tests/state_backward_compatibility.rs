@@ -1,6 +1,6 @@
 use std::{fs, path::PathBuf};
 
-use anyhow::{Context, Result};
+use color_eyre::{eyre::WrapErr, Result};
 
 use pueue_lib::state::{GroupStatus, State, PUEUE_DEFAULT_GROUP};
 
@@ -24,9 +24,9 @@ fn test_restore_from_old_state() -> Result<()> {
         .join("v4.0.0_state.json");
 
     // Try to load the file.
-    let data = fs::read_to_string(path).context("State restore: Failed to read file")?;
+    let data = fs::read_to_string(path).wrap_err("State restore: Failed to read file")?;
     // Try to deserialize the state file.
-    let state: State = serde_json::from_str(&data).context("Failed to deserialize state.")?;
+    let state: State = serde_json::from_str(&data).wrap_err("Failed to deserialize state.")?;
 
     // Make sure the groups are loaded.
     assert!(

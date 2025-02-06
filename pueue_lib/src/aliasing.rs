@@ -1,8 +1,8 @@
+use crate::prelude::*;
+
 use std::collections::HashMap;
 use std::fs::File;
 use std::io::prelude::*;
-
-use log::info;
 
 use crate::error::Error;
 use crate::settings::Settings;

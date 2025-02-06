@@ -1,8 +1,9 @@
+use crate::prelude::*;
+
 use std::fs::File;
 use std::io::Write;
 use std::path::Path;
 
-use log::info;
 use rcgen::{generate_simple_self_signed, CertifiedKey};
 
 use crate::error::Error;

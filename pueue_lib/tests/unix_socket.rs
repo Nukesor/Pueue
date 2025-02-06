@@ -3,7 +3,7 @@ mod helper;
 
 #[cfg(not(target_os = "windows"))]
 mod tests {
-    use anyhow::Result;
+    use color_eyre::Result;
     use pretty_assertions::assert_eq;
     use serde_cbor::de::from_slice;
     use serde_cbor::ser::to_vec;

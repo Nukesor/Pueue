@@ -1,8 +1,9 @@
+use crate::prelude::*;
+
 use std::collections::HashMap;
 
 use chrono::{DateTime, Local};
 use handlebars::{Handlebars, RenderError};
-use log::{debug, error, info};
 use pueue_lib::{
     log::{get_log_path, read_last_log_file_lines},
     process_helper::compile_shell_command,

@@ -1,9 +1,10 @@
+use crate::prelude::*;
+
 use std::io::Write;
 use std::process::Stdio;
 
 use chrono::Local;
 use command_group::CommandGroup;
-use log::{error, info, warn};
 use pueue_lib::log::{create_log_file_handles, get_writable_log_file_handle};
 use pueue_lib::process_helper::compile_shell_command;
 use pueue_lib::settings::Settings;

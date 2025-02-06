@@ -1,4 +1,4 @@
-use anyhow::Result;
+use crate::prelude::*;
 
 use pueue_lib::{
     network::message::{KillMessage, TaskSelection},

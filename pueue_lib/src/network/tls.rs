@@ -53,7 +53,6 @@ fn load_certs<'a>(path: &Path) -> Result<Vec<CertificateDer<'a>>, Error> {
         .collect::<Result<Vec<_>, std::io::Error>>()
         .map_err(|_| Error::CertificateFailure("Failed to parse daemon certificate.".into()))?
         .into_iter()
-        .map(CertificateDer::from)
         .collect();
 
     Ok(certs)
@@ -98,7 +97,6 @@ fn load_ca<'a>(path: &Path) -> Result<CertificateDer<'a>, Error> {
         .collect::<Result<Vec<_>, std::io::Error>>()
         .map_err(|_| Error::CertificateFailure("Failed to parse daemon certificate.".into()))?
         .into_iter()
-        .map(CertificateDer::from)
         .next()
         .ok_or_else(|| Error::CertificateFailure("Couldn't find CA certificate in file".into()))?;
 

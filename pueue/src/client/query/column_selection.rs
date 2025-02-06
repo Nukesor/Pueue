@@ -1,4 +1,5 @@
-use anyhow::Result;
+use crate::prelude::*;
+
 use pest::iterators::Pair;
 
 use super::{QueryResult, Rule};

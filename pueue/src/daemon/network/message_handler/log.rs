@@ -1,9 +1,9 @@
+use crate::prelude::*;
+
 use std::collections::BTreeMap;
 use std::io::Read;
 use std::path::Path;
 use std::time::Duration;
-
-use anyhow::Result;
 
 use pueue_lib::failure_msg;
 use pueue_lib::log::read_and_compress_log_file;

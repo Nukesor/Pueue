@@ -1,8 +1,8 @@
 //! This module contains helper functions, which are used by both, the client and daemon tests.
-use ::log::{warn, LevelFilter};
-use anyhow::Result;
-use simplelog::{Config, ConfigBuilder, TermLogger, TerminalMode};
+use crate::prelude::*;
+
 use tokio::io::{self, AsyncWriteExt};
+use tracing::level_filters::LevelFilter;
 
 pub use pueue_lib::state::PUEUE_DEFAULT_GROUP;
 
@@ -34,26 +34,14 @@ const TIMEOUT: u64 = 5000;
 /// Use this function to enable log output for in-runtime daemon output.
 #[allow(dead_code)]
 pub fn enable_logger() {
-    let level = LevelFilter::Debug;
+    let level = LevelFilter::DEBUG;
 
-    // Try to initialize the logger with the timezone set to the Local time of the machine.
-    let mut builder = ConfigBuilder::new();
-    let logger_config = match builder.set_time_offset_to_local() {
-        Err(_) => {
-            warn!("Failed to determine the local time of this machine. Fallback to UTC.");
-            Config::default()
-        }
-        Ok(builder) => builder.build(),
-    };
-
+    // idea: use local timezone?
     // Init a terminal logger
-    TermLogger::init(
-        level,
-        logger_config.clone(),
-        TerminalMode::Stderr,
-        simplelog::ColorChoice::Auto,
-    )
-    .unwrap()
+    tracing_subscriber::fmt()
+        .with_max_level(level)
+        .with_writer(std::io::stderr)
+        .init();
 }
 
 /// A helper function to sleep for ms time.

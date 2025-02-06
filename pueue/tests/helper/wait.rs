@@ -4,7 +4,7 @@
 ///
 /// Using continuous lookups, we can allow long waiting times, while still having fast tests if
 /// things don't take that long.
-use anyhow::{bail, Result};
+use crate::prelude::*;
 
 use pueue_lib::settings::Shared;
 use pueue_lib::state::GroupStatus;

@@ -1,10 +1,10 @@
+use crate::prelude::*;
+
 use std::fs;
 use std::path::Path;
 use std::sync::MutexGuard;
 
-use anyhow::{Context, Result};
 use chrono::prelude::*;
-use log::{debug, info};
 
 use pueue_lib::settings::Settings;
 use pueue_lib::state::{Group, GroupStatus, State, PUEUE_DEFAULT_GROUP};

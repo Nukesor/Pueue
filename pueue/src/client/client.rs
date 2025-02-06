@@ -1,11 +1,11 @@
+use crate::prelude::*;
+
 use std::env::{current_dir, vars};
 use std::io::{self, stdout, Write};
 use std::{borrow::Cow, collections::HashMap};
 
-use anyhow::{bail, Context, Result};
 use clap::crate_version;
 use crossterm::tty::IsTty;
-use log::{error, warn};
 
 use pueue_lib::format::format_datetime;
 use pueue_lib::network::message::*;

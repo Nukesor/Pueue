@@ -1,4 +1,4 @@
-use anyhow::{anyhow, bail, Context, Result};
+use crate::prelude::*;
 
 use pueue_lib::network::message::*;
 use pueue_lib::network::protocol::{
@@ -18,12 +18,12 @@ where
     // Check if we can receive the response from the daemon
     internal_send_message(message, &mut stream)
         .await
-        .map_err(|err| anyhow!("Failed to send message: {err}"))?;
+        .map_err(|err| eyre!("Failed to send message: {err}"))?;
 
     // Check if we can receive the response from the daemon
     receive_message(&mut stream)
         .await
-        .map_err(|err| anyhow!("Failed to receive message: {err}"))
+        .map_err(|err| eyre!("Failed to receive message: {err}"))
 }
 
 /// Create a new stream that already finished the handshake and secret exchange.

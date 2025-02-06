@@ -1,8 +1,9 @@
+use crate::prelude::*;
+
 use std::fs::{remove_file, File};
 use std::io::{self, prelude::*, Read, SeekFrom};
 use std::path::{Path, PathBuf};
 
-use log::error;
 use rev_buf_reader::RevBufReader;
 use snap::write::FrameEncoder;
 
